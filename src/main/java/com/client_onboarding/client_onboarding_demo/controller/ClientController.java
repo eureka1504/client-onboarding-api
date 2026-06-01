@@ -5,6 +5,7 @@ import com.client_onboarding.client_onboarding_demo.model.CreateClientRequest;
 import com.client_onboarding.client_onboarding_demo.model.UpdateStatusRequest;
 import com.client_onboarding.client_onboarding_demo.service.ClientService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class ClientController {
     }
 
     @PostMapping("/clients")
+    @ResponseStatus(HttpStatus.CREATED)
     public ClientDTO addClient(@Valid @RequestBody CreateClientRequest clientRequest)
     {
         return clientService.addClient(clientRequest);
