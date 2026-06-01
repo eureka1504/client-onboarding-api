@@ -24,4 +24,4 @@ jobs:
           java-version: 21
 
       - name: Build project
-        run: mvn clean verify
+        run: bash mvnw clean verify
