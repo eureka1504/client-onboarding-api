@@ -20,4 +20,4 @@ jobs:
           java-version: 21
 
       - name: Verify project
-        run: bash mvnw test
+        run: bash mvnw clean verify
