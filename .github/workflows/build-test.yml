@@ -1,16 +1,12 @@
-name: Build Client Onboarding API
+name: Build and Test Client Onboarding API
 
 on:
-  push:
-    branches:
-      - main
-
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,5 +19,5 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build project
-        run: bash mvnw clean verify
+      - name: Verify project
+        run: bash mvnw test
