@@ -39,4 +39,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             pkill -f client-onboarding-demo || true
-            nohup java -jar /home/ec2-user/app/client-onboarding-demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null & disown
+            
+            nohup java -jar /home/ec2-user/app/client-onboarding-demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null &
+            
+            exit 0
