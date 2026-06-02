@@ -38,8 +38,10 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            pkill -f client-onboarding-demo || true
-            
-            nohup java -jar /home/ec2-user/app/client-onboarding-demo-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null &
-            
-            exit 0
+            sudo systemctl restart client-onboarding
+
+      - name: Health check
+        run: |
+          echo "Waiting for client onboarding api to start..."
+          sleep 10
+          curl --fail http://${{ secrets.EC2_HOST }}:8080/clients
