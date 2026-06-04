@@ -2,13 +2,21 @@
 
 RESTful API built with Java Spring Boot for managing client onboarding workflows.
 
+Deployed on AWS EC2 and uses Amazon RDS (PostgreSQL) as its primary database.
+
 # Tech Stack
 - Java 21
 - Spring Boot
 - Spring Web
 - Spring Data JPA
-- H2 Database
+- PostgreSQL
 - Maven
+
+# Infrastructure
+- AWS EC2 (application hosting)
+- AWS RDS (PostgreSQL database)
+- GitHub Actions (CI/CD pipeline)
+- systemd (process management on EC2)
 
 # API Endpoints
 
