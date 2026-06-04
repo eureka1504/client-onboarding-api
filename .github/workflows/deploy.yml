@@ -22,26 +22,17 @@ jobs:
       - name: Build project
         run: bash mvnw clean package
 
+      - name: Prepare artifact
+        run: cp target/client-onboarding-demo-0.0.1-SNAPSHOT.jar app.jar
+
       - name: Copy JAR to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: target/client-onboarding-demo-0.0.1-SNAPSHOT.jar
-          target: /home/ec2-user/app/client-onboarding-demo-0.0.1-SNAPSHOT.jar
-
-      - name: Debug EC2 target
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            echo "HOSTNAME: $(hostname)"
-            echo "PUBLIC IP: $(curl -s ifconfig.me)"
-            echo "APP DIR:"
-            ls -lh /home/ec2-user/app/
+          source: app.jar
+          target: /home/ec2-user/app/app.jar
 
       - name: Restart application on EC2
         uses: appleboy/ssh-action@v1.0.3
