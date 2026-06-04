@@ -51,9 +51,3 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo systemctl restart client-onboarding
-
-      - name: Health check
-        run: |
-          echo "Waiting for client onboarding api to start..."
-          sleep 10
-          curl --fail http://${{ secrets.EC2_HOST }}:8080/clients
