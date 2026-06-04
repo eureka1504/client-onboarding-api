@@ -31,6 +31,18 @@ jobs:
           source: target/client-onboarding-demo-0.0.1-SNAPSHOT.jar
           target: /home/ec2-user/app/
 
+      - name: Debug EC2 target
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "HOSTNAME: $(hostname)"
+            echo "PUBLIC IP: $(curl -s ifconfig.me)"
+            echo "APP DIR:"
+            ls -lh /home/ec2-user/app/
+
       - name: Restart application on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
